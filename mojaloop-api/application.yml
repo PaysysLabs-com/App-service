@@ -1,0 +1,77 @@
+debug: false
+
+server:
+  port: 3013
+  session-timeout: 80
+  allowed-ips: '*'
+  
+  
+springfox.documentation.swagger.v2.path: /docs
+
+swagger:
+  enabled: true
+ 
+ 
+token: 
+  length: 50
+  expiry: 3600
+  letterspace: ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789
+  store:
+    type: memory
+    name: restApiAuthTokenCache
+    eviction: 300000
+
+spring:
+  mandatoryFileEncoding: UTF-8
+  http:
+    encoding:
+      charset: UTF-8
+      enabled: true
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    url: jdbc:sqlserver://localhost:1433;database=mojaloop;
+    username: root
+    password: root
+    sqlScriptEncoding: UTF-8
+    tomcat.connection-properties: useUnicode=yes;characterEncoding=utf-8;
+    hikari:
+      connection-test-query: SELECT 1
+      minimum-idle: 8
+      maximum-pool-size: 24
+      pool-name: sql-pool
+      auto-commit: true
+      max-lifetime: 1800000
+      leak-detection-threshold: 60000
+  jpa:
+    show-sql: true
+    generate-ddl: false
+    open-in-view: false
+    database-platform: org.hibernate.dialect.SQLServer2012Dialect
+    hibernate: 
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.SQLServer2012Dialect
+        format_sql: true
+        #globally_quoted_identifiers: true
+        id.new_generator_mappings: false
+    
+api:
+  title: Mojaloop
+  description: REST Services for Mojaloop
+  version: 1.0
+  contact:
+    email: info@abc.com
+    name: Paysys Labs
+    link: http://www.smtp.com/
+
+password: 
+  length: 10
+
+springfox:
+  documentation:
+    swagger:
+      enabled: true
+      v2:
+        path: /docs
